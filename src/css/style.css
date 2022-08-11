@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  font-family: "Red Hat Display", sans-serif;
+}
+
+body {
+  background-color: #7d9b76;
+}
+
+nav {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.nav-link {
+  color: #f6f6e9 !important;
+}
+
+.offcanvas-body,
+.offcanvas-header {
+  background-color: #1f5014;
+}
+
+.skills,
+.portfolio {
+  background-color: #f6f6e9;
+  border-radius: 30px;
+}
+
+nav button i {
+  font-size: 1.5rem;
+}
+
+.form-control {
+  height: 1.5rem;
+  width: 20rem;
+  margin-block: auto;
+  padding-block: 1rem;
+}
+
+.container-md {
+  justify-content: center;
+}
+
+footer {
+  background-color: #4a4a4a;
+}
+
+footer h5,
+footer label {
+  color: #f6f6e9;
+}
+
+footer .link {
+  color: #9c9c9c;
+  text-decoration: none;
+}
+
+.form-control {
+  width: 100%;
+}
+
+#navbar-cont {
+  padding-inline: 0px;
+}
+
+.blog-img {
+  width: 100%;
+}
+
+.blog-img-xl {
+  width: 100%;
+}
