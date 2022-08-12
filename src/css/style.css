@@ -72,3 +72,26 @@ footer .link {
 .blog-img-xl {
   width: 100%;
 }
+
+.big-img {
+  width: 100%;
+}
+
+.blogParagraph {
+  font-size: 1.5rem;
+  word-wrap: break-word;
+}
+
+#breadcrumb {
+  font-size: 1.25rem;
+}
+
+.breadcrumb-item {
+  color: #e7e7e7;
+  text-decoration: none;
+  transition: color 0.25s;
+}
+
+.breadcrumb-item:hover {
+  color: #4a4a4a;
+}

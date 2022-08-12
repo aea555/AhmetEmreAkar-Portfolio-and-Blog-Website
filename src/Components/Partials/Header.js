@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 function Header() {
   return (
-    <div className="container-xl mb-5">
+    <div className="container-xl mt-2 mb-5">
       <nav className="navbar ms-auto navbar-expand-lg">
         <div className="container-xl" id="navbar-cont">
           <Link className="navbar-brand" to={"/"}>

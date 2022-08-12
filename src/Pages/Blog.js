@@ -9,7 +9,7 @@ function Blog() {
       <Header />
       <div className="row">
         <div className="col-md-6 mb-5">
-          <h3>Popular Blogs</h3>
+          <h3>Popular Posts</h3>
           <div className="">
             <BlogSmall />
             <BlogSmall />
@@ -18,7 +18,7 @@ function Blog() {
           </div>
         </div>
         <div className="col-md-6 mb-5">
-          <h3>Featured Blogs</h3>
+          <h3>Featured Posts</h3>
           <div className="">
             <BlogLarge />
             <BlogLarge />

@@ -10,7 +10,7 @@ function BlogSmall() {
           <div className="blog-sm-content-container">
             <h5>Blog Title Placeholder</h5>
             <p>Lorem Ipsum is simply dummy text of the printing...</p>
-            <Link className="nav-link" to={""}>
+            <Link className="nav-link" to={"/blog/posts/a-page"}>
               View
             </Link>
           </div>

@@ -5,7 +5,7 @@ import Services from "../Components/Others/Services";
 import Portfolio from "../Components/Others/Portfolio";
 function Home() {
   return (
-    <div className="App container-md">
+    <div className="App container-xl">
       <Header />
       <Carousel />
       <Services />
