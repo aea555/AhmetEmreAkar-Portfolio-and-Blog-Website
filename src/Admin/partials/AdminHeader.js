@@ -20,7 +20,7 @@ function AdminHeader() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to={""}>
+                  <Link className="dropdown-item" to={"/admin/portfolio/edit"}>
                     Edit a Work
                   </Link>
                 </li>
@@ -32,29 +32,29 @@ function AdminHeader() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to={""}>
-                    Edit a Post
+                  <Link className="dropdown-item" to={"/admin/posts/add"}>
+                    Create a New Post
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to={""}>
-                    Create a New Post
+                  <Link className="dropdown-item" to={"/admin/posts/edit"}>
+                    Edit a Post
                   </Link>
                 </li>
               </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={""} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Link className="nav-link" to={"/"} role="button" aria-expanded="false">
                 Home Page
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={""} role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Admin Page
+              <Link className="nav-link" to={"/admin"} role="button" aria-expanded="false">
+                Back To Panel
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={""} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Link className="nav-link" to={""} role="button" aria-expanded="false">
                 Logout
               </Link>
             </li>

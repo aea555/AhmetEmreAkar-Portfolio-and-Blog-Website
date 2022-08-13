@@ -53,6 +53,11 @@ function Header() {
                   <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
               </form>
+              <div id="account" className="ms-auto">
+                <Link className="nav-link active" aria-current="page" to={"/login"}>
+                  Sign In
+                </Link>
+              </div>
             </div>
           </div>
         </div>
