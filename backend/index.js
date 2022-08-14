@@ -1,19 +1,27 @@
+const dotenv = require("dotenv").config();
+
 //EXPRESS
-import { Express } from "express";
-const app = Express();
+const express = require("express");
+const app = express();
 
 //MONGOOSE
-import mongoose from "mongoose";
-import connectToDB from "./connect/connectToDB";
+const mongoose = require("mongoose");
+const connectToDB = require("./config/connectToDB");
 connectToDB();
 
 //BODY PARSER (Express Implementation)
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//MIDDLEWARE
+const { errorHandler } = require("./middleware/errorMW");
+app.use(errorHandler);
 
 //ROUTES
 app.use("/admin/portfolio/add");
 
 //CREATE SERVER
-app.listen(process.env.PORT || 4000, () => {
-  console.log("Server started");
+const port = process.env.PORT || 4000;
+app.listen(port, () => {
+  console.log(`Started server on port ${port}`);
 });
