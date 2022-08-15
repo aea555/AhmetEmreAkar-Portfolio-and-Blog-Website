@@ -1,4 +1,5 @@
-import mongoose, { Schema, Model } from "mongoose";
+const mongoose = require("mongoose");
+const { Schema, Model } = mongoose;
 
 const BlogSchema = new Schema(
   {

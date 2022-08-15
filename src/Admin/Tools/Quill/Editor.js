@@ -3,7 +3,7 @@ import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 import Config from "./EditorConfig";
 
-function QuillEditor() {
+function QuillEditor(props) {
   const { quill, quillRef } = useQuill(Config);
   const [savedText, setSavedText] = useState("");
 
@@ -17,8 +17,7 @@ function QuillEditor() {
 
   const handleSave = (e) => {
     e.preventDefault();
-    const saved = savedText;
-    console.log(saved);
+    props.passContent(savedText);
   };
 
   return (

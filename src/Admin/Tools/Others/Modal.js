@@ -36,7 +36,7 @@ function Modal() {
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                 No, Go Back
               </button>
-              <button type="submit" onClick={""} className="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Yes
               </button>
             </div>

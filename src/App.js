@@ -3,7 +3,7 @@ import Blog from "./Pages/Blog";
 import SingleBlogPage from "./Pages/SingleBlog";
 import AdminPanel from "./Admin/AdminPanel";
 import Add from "./Admin/Pages/Add";
-import Edit from "./Admin/Pages/Edit";
+import ViewBlogs from "./Admin/Pages/ViewBlogs";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./css/style.css";
 function App() {
@@ -17,10 +17,9 @@ function App() {
       <Routes>
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/admin/portfolio/add" element={<Add />} />
-        <Route path="/admin/portfolio/edit" element={<Edit />} />
+        {/* <Route path="/admin/portfolio/edit" element={<Edit />} /> */}
         <Route path="/admin/posts/add" element={<Add />} />
-        <Route path="/admin/posts/edit" element={<Edit />} />
-
+        <Route path="/admin/posts/all" element={<ViewBlogs />} />
       </Routes>
     </Router>
   );

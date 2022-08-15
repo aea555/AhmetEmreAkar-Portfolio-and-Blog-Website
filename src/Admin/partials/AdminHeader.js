@@ -4,13 +4,27 @@ function AdminHeader() {
   return (
     <nav className="navbar navbar-expand-sm" id="AdminHeader">
       <div className="container-fluid">
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item dropdown">
-              <Link className="nav-link dropdown-toggle" to={""} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Link
+                className="nav-link dropdown-toggle"
+                to={""}
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Works
               </Link>
               <ul className="dropdown-menu">
@@ -27,7 +41,13 @@ function AdminHeader() {
               </ul>
             </li>
             <li className="nav-item dropdown">
-              <Link className="nav-link dropdown-toggle" to={""} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <Link
+                className="nav-link dropdown-toggle"
+                to={""}
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 Blog Posts
               </Link>
               <ul className="dropdown-menu">
@@ -37,8 +57,8 @@ function AdminHeader() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to={"/admin/posts/edit"}>
-                    Edit a Post
+                  <Link className="dropdown-item" to={"/admin/posts/all"}>
+                    View Posts
                   </Link>
                 </li>
               </ul>
@@ -49,7 +69,12 @@ function AdminHeader() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={"/admin"} role="button" aria-expanded="false">
+              <Link
+                className="nav-link"
+                to={"/admin"}
+                role="button"
+                aria-expanded="false"
+              >
                 Back To Panel
               </Link>
             </li>

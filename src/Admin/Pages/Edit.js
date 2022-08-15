@@ -1,11 +1,16 @@
-import EditForm from "../Tools/Others/EditForm";
+import Editor from "../Tools/Quill/Editor";
 import AdminHeader from "../partials/AdminHeader";
+import { useState } from "react";
 
 function Edit() {
+  let [title, setTitle] = useState("");
+  let [content, setContent] = useState("");
   return (
     <div className="container-xl">
       <AdminHeader />
-      <EditForm />
+      <form id="editWork">
+        <Editor />
+      </form>
     </div>
   );
 }
