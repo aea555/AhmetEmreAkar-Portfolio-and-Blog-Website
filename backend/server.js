@@ -21,9 +21,6 @@ app.use(errorHandler);
 
 //ROUTES
 app.use("/api/blogs", require("./routes/blogRoutes"));
-app.get("api/blogs/:id", (req, res) => {
-  res.send("zort");
-});
 
 //CREATE SERVER
 const port = process.env.PORT || 4000;

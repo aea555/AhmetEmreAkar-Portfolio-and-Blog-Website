@@ -22,7 +22,7 @@ function Add() {
       content: content,
     });
   });
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(title);
     console.log(content);
@@ -35,7 +35,9 @@ function Add() {
       },
       data: data,
     };
-    axios(config);
+    const response = await axios(config);
+    console.log(response);
+    window.location.reload();
   };
   return (
     <div className="container-xl">
