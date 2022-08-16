@@ -10,7 +10,7 @@ function ViewBlogs() {
   const data = qs.stringify({});
   const config = {
     method: "get",
-    url: "http://localhost:8000/api/blogs",
+    url: "http://localhost:8000/api/blogs/",
     headers: {},
     data: data,
   };

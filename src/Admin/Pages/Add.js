@@ -46,7 +46,7 @@ function Add() {
         </label>
         <input
           type="text"
-          className="form-control mb-5"
+          className="form-control mb-3"
           onChange={handleChange}
           value={title}
           id="postTitle"
@@ -55,8 +55,8 @@ function Add() {
           Post Content
         </label>
         <Editor passContent={passContent} id="postContent" />
-        <button onClick={handleSubmit} className="btn btn-success mt-5">
-          Create
+        <button onClick={handleSubmit} className="btn btn-success mt-5 d-block">
+          Create Post
         </button>
       </form>
     </div>

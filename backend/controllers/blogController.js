@@ -5,8 +5,28 @@ const Blog = require("../models/BlogModel");
 //@route GET api/blogs
 //@access Public
 const getBlog = asyncHandler(async (req, res) => {
-  const blogs = await Blog.find();
-  res.status(200).json({ blogs });
+  let blogs;
+  if (req.query.id !== undefined) {
+    console.log(req.query.id);
+    blogs = await Blog.findById(req.query.id);
+    res.status(200).json({ blogs });
+  } else {
+    blogs = await Blog.find();
+    res.status(200).json({ blogs });
+  }
+});
+
+//@desc get blog
+//@route GET api/blogs
+//@access Public
+const getBlogById = asyncHandler(async (req, res) => {
+  let blog = Blog.findById(req.body.id);
+  if (!blog) {
+    res.status(400);
+    throw new Error("cant get blog");
+  }
+  console.log(blog);
+  res.status(200).json({ blog });
 });
 
 //@desc post blog
@@ -53,4 +73,4 @@ const deleteBlog = asyncHandler(async (req, res) => {
   res.status(200).json({ message: `delete goal ${req.params.id}` });
 });
 
-module.exports = { getBlog, setBlog, updateBlog, deleteBlog };
+module.exports = { getBlog, getBlogById, setBlog, updateBlog, deleteBlog };

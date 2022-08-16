@@ -1,4 +1,5 @@
 import { Markup } from "interweave";
+import { Link } from "react-router-dom";
 function Blog(props) {
   return (
     <div className="card">
@@ -8,9 +9,9 @@ function Blog(props) {
         <p className="card-text">
           <Markup content={props.content.slice(0, 60)} />
         </p>
-        <a href="#" className="card-link">
+        <Link to={`/admin/posts/edit/${props._id}`} className="card-link">
           Edit
-        </a>
+        </Link>
         <a href="#" className="card-link">
           Delete
         </a>

@@ -22,8 +22,10 @@ function QuillEditor(props) {
 
   return (
     <>
-      <div id="editor" data={savedText} ref={quillRef}></div>
-      <button onClick={handleSave}>save</button>
+      <div id="editor" ref={quillRef}></div>
+      <button className="btn btn-warning mt-3" onClick={handleSave}>
+        Save Text Content
+      </button>
     </>
   );
 }

@@ -6,6 +6,7 @@ import Add from "./Admin/Pages/Add";
 import ViewBlogs from "./Admin/Pages/ViewBlogs";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./css/style.css";
+import Edit from "./Admin/Pages/Edit";
 function App() {
   return (
     <Router>
@@ -20,6 +21,7 @@ function App() {
         {/* <Route path="/admin/portfolio/edit" element={<Edit />} /> */}
         <Route path="/admin/posts/add" element={<Add />} />
         <Route path="/admin/posts/all" element={<ViewBlogs />} />
+        <Route path="/admin/posts/edit/:id" element={<Edit />} />
       </Routes>
     </Router>
   );

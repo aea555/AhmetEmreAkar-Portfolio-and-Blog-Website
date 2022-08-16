@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   getBlog,
+  getBlogById,
   setBlog,
   updateBlog,
   deleteBlog,
