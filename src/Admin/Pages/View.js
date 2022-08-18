@@ -4,17 +4,20 @@ import AdminHeader from "../partials/AdminHeader";
 import Blog from "../Tools/Others/Blog";
 const axios = require("axios");
 const qs = require("qs");
+var pathArray = window.location.pathname.split("/");
+var workOrBlog = pathArray[2];
+console.log(workOrBlog);
 
 function View() {
   let [datas, setData] = useState([]);
   const data = qs.stringify({});
   const config = {
     method: "get",
-    url: "http://localhost:8000/api/blogs/",
+    url: `http://localhost:8000/api/${workOrBlog}/`,
     headers: {},
     data: data,
   };
-  const fetchData = async () => {
+  const fetchBlogs = async () => {
     try {
       const response = await axios(config);
       setData(response.data.blogs);
@@ -22,8 +25,17 @@ function View() {
       console.log(`Request failed for reason: ${err}`);
     }
   };
+  const fetchWorks = async () => {
+    try {
+      const response = await axios(config);
+      setData(response.data.works);
+    } catch (err) {
+      console.log(`Request failed for reason: ${err}`);
+    }
+  };
   useEffect(() => {
-    fetchData();
+    if (workOrBlog === "posts") fetchBlogs();
+    else fetchWorks();
   }, []);
 
   const createDivs = () => {

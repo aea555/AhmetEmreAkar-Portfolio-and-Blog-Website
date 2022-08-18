@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 const axios = require("axios");
 const qs = require("qs");
+var pathArray = window.location.pathname.split("/");
+var workOrBlog = pathArray[2];
 
 function Blog(props) {
   const handleDelete = async () => {
@@ -29,12 +31,16 @@ function Blog(props) {
         <p className="card-text">
           <Markup content={props.content.slice(0, 60)} />
         </p>
-        <Link to={`/admin/posts/edit/${props._id}`} className="card-link">
+        <a href={`/admin/${workOrBlog}/edit/${props._id}`} className="card-link">
           Edit
-        </Link>
-        <Link to={"/admin/posts/all"} onClick={handleDelete} className="card-link">
+        </a>
+        <a
+          href={`/admin/${workOrBlog}/all`}
+          onClick={handleDelete}
+          className="card-link"
+        >
           Delete
-        </Link>
+        </a>
       </div>
     </div>
   );

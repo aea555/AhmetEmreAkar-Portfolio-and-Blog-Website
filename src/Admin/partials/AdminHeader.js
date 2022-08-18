@@ -29,14 +29,14 @@ function AdminHeader() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to={"/admin/works/add"}>
+                  <a className="dropdown-item" href={"/admin/works/add"}>
                     Create a New Work
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to={"/admin/works/all"}>
+                  <a className="dropdown-item" href={"/admin/works/all"}>
                     View all Works
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </li>
@@ -52,14 +52,14 @@ function AdminHeader() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to={"/admin/posts/add"}>
+                  <a className="dropdown-item" href={"/admin/posts/add"}>
                     Create a New Post
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to={"/admin/posts/all"}>
+                  <a className="dropdown-item" href={"/admin/posts/all"}>
                     View Posts
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </li>

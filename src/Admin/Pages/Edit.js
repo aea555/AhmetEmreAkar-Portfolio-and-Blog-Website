@@ -4,25 +4,38 @@ import { useEffect, useState } from "react";
 const axios = require("axios");
 const qs = require("qs");
 const id = window.location.pathname.substring(18);
+var pathArray = window.location.pathname.split("/");
+var workOrBlog = pathArray[2];
 
 function Edit(props) {
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");
   let data;
 
+  const setResponse = (res) => {
+    if (workOrBlog === "posts") {
+      setTitle(res.data.blogs.title);
+      setContent(res.data.blogs.content);
+    } else {
+      setTitle(res.data.works.title);
+      setContent(res.data.works.content);
+    }
+  };
+
   const fetchData = async () => {
     try {
       const config = {
         method: "get",
-        url: `http://localhost:8000/api/blogs?id=${id}`,
+        url: `http://localhost:8000/api/${workOrBlog}?id=${id}`,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       };
       const response = await axios(config);
-      setTitle(response.data.blogs.title);
-      setContent(response.data.blogs.content);
-      document.querySelector(".ql-editor").innerHTML = response.data.blogs.content;
+      setResponse(response);
+      workOrBlog === "posts"
+        ? (document.querySelector(".ql-editor").innerHTML = response.data.blogs.content)
+        : (document.querySelector(".ql-editor").innerHTML = response.data.works.content);
     } catch (err) {
       console.log(`Request failed for reason: ${err}`);
     }
@@ -38,7 +51,7 @@ function Edit(props) {
       });
       var config = {
         method: "put",
-        url: "http://localhost:8000/api/blogs",
+        url: `http://localhost:8000/api/${workOrBlog}`,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },

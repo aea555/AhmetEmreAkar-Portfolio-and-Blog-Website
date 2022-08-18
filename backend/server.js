@@ -20,7 +20,7 @@ const { errorHandler } = require("./middleware/errorMW");
 app.use(errorHandler);
 
 //ROUTES
-app.use("/api/blogs", require("./routes/blogRoutes"));
+app.use("/api/posts", require("./routes/blogRoutes"));
 app.use("/api/works", require("./routes/workRoutes"));
 
 //CREATE SERVER

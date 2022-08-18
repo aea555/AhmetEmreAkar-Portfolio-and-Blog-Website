@@ -5,6 +5,8 @@ import Modal from "../Tools/Others/Modal";
 import AdminHeader from "../partials/AdminHeader";
 import axios from "axios";
 import qs from "qs";
+var pathArray = window.location.pathname.split("/");
+var workOrBlog = pathArray[2];
 
 function Add() {
   let [title, setTitle] = useState("");
@@ -28,7 +30,7 @@ function Add() {
     console.log(content);
     const config = {
       method: "post",
-      url: "http://localhost:8000/api/blogs",
+      url: `http://localhost:8000/api/${workOrBlog}`,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/x-www-form-urlencoded",
@@ -44,7 +46,7 @@ function Add() {
       <AdminHeader />
       <form id="saveNew">
         <label htmlFor="postTitle" className="form-label">
-          Post Title
+          {workOrBlog === "posts" ? "Post" : "Work"} Title
         </label>
         <input
           type="text"
@@ -54,11 +56,11 @@ function Add() {
           id="postTitle"
         />
         <label htmlFor="postContent" className="form-label">
-          Post Content
+          {workOrBlog === "posts" ? "Post" : "Work"} Content
         </label>
         <Editor passContent={passContent} id="postContent" />
         <button onClick={handleSubmit} className="btn btn-success mt-5 d-block">
-          Create Post
+          Create {workOrBlog === "posts" ? "Post" : "Work"}
         </button>
       </form>
     </div>
