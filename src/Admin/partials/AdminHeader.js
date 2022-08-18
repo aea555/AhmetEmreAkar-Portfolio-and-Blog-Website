@@ -29,13 +29,13 @@ function AdminHeader() {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to={"/admin/portfolio/add"}>
-                    Add a Work
+                  <Link className="dropdown-item" to={"/admin/works/add"}>
+                    Create a New Work
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to={"/admin/portfolio/edit"}>
-                    Edit a Work
+                  <Link className="dropdown-item" to={"/admin/works/all"}>
+                    View all Works
                   </Link>
                 </li>
               </ul>

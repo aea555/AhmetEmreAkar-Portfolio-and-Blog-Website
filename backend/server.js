@@ -21,6 +21,7 @@ app.use(errorHandler);
 
 //ROUTES
 app.use("/api/blogs", require("./routes/blogRoutes"));
+app.use("/api/works", require("./routes/workRoutes"));
 
 //CREATE SERVER
 const port = process.env.PORT || 4000;

@@ -5,7 +5,7 @@ import Blog from "../Tools/Others/Blog";
 const axios = require("axios");
 const qs = require("qs");
 
-function ViewBlogs() {
+function View() {
   let [datas, setData] = useState([]);
   const data = qs.stringify({});
   const config = {
@@ -47,4 +47,4 @@ function ViewBlogs() {
   );
 }
 
-export default ViewBlogs;
+export default View;
