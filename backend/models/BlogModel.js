@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Schema, Model } = mongoose;
+const { Schema } = mongoose;
 
 const BlogSchema = new Schema(
   {
@@ -10,6 +10,11 @@ const BlogSchema = new Schema(
     content: {
       type: String,
       required: [true, "you must add blog content"],
+    },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
   },
   {

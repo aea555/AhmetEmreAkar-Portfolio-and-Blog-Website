@@ -13,7 +13,7 @@ function Blog(props) {
     });
     const config = {
       method: "delete",
-      url: `http://localhost:8000/api/blogs`,
+      url: `http://localhost:8000/api/${workOrBlog}`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
@@ -21,7 +21,6 @@ function Blog(props) {
     };
     const response = await axios(config);
     console.log(response.data);
-    window.location.reload();
   };
   return (
     <div className="card">
@@ -34,11 +33,7 @@ function Blog(props) {
         <a href={`/admin/${workOrBlog}/edit/${props._id}`} className="card-link">
           Edit
         </a>
-        <a
-          href={`/admin/${workOrBlog}/all`}
-          onClick={handleDelete}
-          className="card-link"
-        >
+        <a href={`/admin/${workOrBlog}/all`} onClick={handleDelete} className="card-link">
           Delete
         </a>
       </div>

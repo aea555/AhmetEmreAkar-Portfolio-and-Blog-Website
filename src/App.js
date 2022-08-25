@@ -1,5 +1,6 @@
 import Home from "./Pages/Home";
 import Blog from "./Pages/Blog";
+import Login from "./Pages/Login";
 import SingleBlogPage from "./Pages/SingleBlog";
 import AdminPanel from "./Admin/AdminPanel";
 import Add from "./Admin/Pages/Add";
@@ -12,6 +13,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/posts/*" element={<SingleBlogPage />} />
       </Routes>

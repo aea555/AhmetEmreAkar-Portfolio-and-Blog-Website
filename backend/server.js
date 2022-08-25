@@ -22,9 +22,10 @@ app.use(errorHandler);
 //ROUTES
 app.use("/api/posts", require("./routes/blogRoutes"));
 app.use("/api/works", require("./routes/workRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
 
 //CREATE SERVER
-const port = process.env.PORT || 4000;
+const port = process.env.BACKEND_PORT || 4000;
 app.listen(port, () => {
   console.log(`Started server on port ${port}`);
 });

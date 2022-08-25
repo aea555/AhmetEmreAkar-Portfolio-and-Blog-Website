@@ -32,9 +32,14 @@ const setBlog = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("please add all fields");
   }
+  if (req.user.role !== "admin") {
+    res.status(400);
+    throw new Error("you are not an admin");
+  }
   const blog = await Blog.create({
     title: req.body.title,
     content: req.body.content,
+    author: req.user.id,
   });
   res.status(200).json({ blog });
 });

@@ -2,9 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 import Config from "./EditorConfig";
+import ImageCompress from "quill-image-compress";
 
 function QuillEditor(props) {
-  const { quill, quillRef } = useQuill(Config);
+  const { quill, quillRef, Quill } = useQuill(Config);
+
+  if (Quill && !quill) {
+    Quill.register("modules/imageCompress", ImageCompress);
+  }
+
   const [savedText, setSavedText] = useState("");
 
   useEffect(() => {
