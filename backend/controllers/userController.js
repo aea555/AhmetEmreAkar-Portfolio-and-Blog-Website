@@ -62,6 +62,11 @@ const loginUser = asyncHandler(async (req, res) => {
   // Check for user email
   const user = await User.findOne({ email: email });
 
+  if (!user) {
+    res.status(400);
+    throw new Error("user does not exist");
+  }
+
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
       _id: user._id,
@@ -79,7 +84,7 @@ const loginUser = asyncHandler(async (req, res) => {
 //@route GET api/users/me
 //@access Private
 const getMe = asyncHandler(async (req, res) => {
-  res.json({ message: "user data" });
+  res.json({ message: req.user });
 });
 
 module.exports = { registerUser, loginUser, getMe };
