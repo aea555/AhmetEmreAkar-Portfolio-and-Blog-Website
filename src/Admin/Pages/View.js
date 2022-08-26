@@ -42,7 +42,13 @@ function View() {
     const blogs = datas.map((data) => {
       return (
         <div key={uuid()} className="col-sm-6 mt-3">
-          <Blog key={data._id} title={data.title} content={data.content} _id={data._id} />
+          <Blog
+            key={data._id}
+            title={data.title}
+            content={data.content}
+            author={data.author}
+            _id={data._id}
+          />
         </div>
       );
     });

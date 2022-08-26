@@ -7,6 +7,8 @@ const {
   deleteWork,
 } = require("../controllers/workController");
 
-router.route("/").get(getWork).post(setWork).put(updateWork).delete(deleteWork);
+const { protect } = require("../middleware/authMiddleware");
+
+router.route("/").get(getWork).post(protect, setWork).put(protect, updateWork).delete(protect, deleteWork);
 
 module.exports = router;

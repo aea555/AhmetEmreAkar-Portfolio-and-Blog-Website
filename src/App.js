@@ -10,9 +10,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./css/style.css";
 import Edit from "./Admin/Pages/Edit";
 function App() {
-  const getUser = () => {
-    const userToken = localStorage.getItem("jwtToken");
-    if (userToken) return true;
+  const getAdmin = () => {
+    const token = localStorage.getItem("jwtTokenAdmin");
+    if (token) return true;
     else return false;
   };
   return (
@@ -24,30 +24,30 @@ function App() {
         <Route path="/blog/posts/*" element={<SingleBlogPage />} />
       </Routes>
       <Routes>
-        <Route path="/admin" element={getUser() ? <AdminHeader /> : <AdminLogin />} />
+        <Route path="/admin" element={getAdmin() ? <AdminHeader /> : <AdminLogin />} />
         <Route
           path="/admin/login"
-          element={getUser() ? <AdminHeader /> : <AdminLogin />}
+          element={getAdmin() ? <AdminHeader /> : <AdminLogin />}
         />
-        <Route path="/admin/posts/add" element={getUser() ? <Add /> : <AdminLogin />} />
+        <Route path="/admin/posts/add" element={getAdmin() ? <Add /> : <AdminLogin />} />
         <Route
           path="/admin/posts/all"
-          element={getUser() ? <ViewBlogs /> : <AdminLogin />}
+          element={getAdmin() ? <ViewBlogs /> : <AdminLogin />}
         />
         <Route
           path="/admin/posts/edit/:id"
-          element={getUser() ? <Edit /> : <AdminLogin />}
+          element={getAdmin() ? <Edit /> : <AdminLogin />}
         />
       </Routes>
       <Routes>
-        <Route path="/admin/works/add" element={getUser() ? <Add /> : <AdminLogin />} />
+        <Route path="/admin/works/add" element={getAdmin() ? <Add /> : <AdminLogin />} />
         <Route
           path="/admin/works/all"
-          element={getUser() ? <ViewBlogs /> : <AdminLogin />}
+          element={getAdmin() ? <ViewBlogs /> : <AdminLogin />}
         />
         <Route
           path="admin/works/edit/:id"
-          element={getUser() ? <Edit /> : <AdminLogin />}
+          element={getAdmin() ? <Edit /> : <AdminLogin />}
         />
       </Routes>
     </Router>

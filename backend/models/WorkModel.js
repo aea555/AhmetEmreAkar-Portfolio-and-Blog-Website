@@ -11,6 +11,11 @@ const WorkSchema = new Schema(
       type: String,
       required: [true, "you must add work content"],
     },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   {
     timestamps: true,

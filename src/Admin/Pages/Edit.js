@@ -29,7 +29,6 @@ function Edit(props) {
         url: `http://localhost:8000/api/${workOrBlog}?id=${id}`,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
         },
       };
       const response = await axios(config);
@@ -55,7 +54,7 @@ function Edit(props) {
         url: `http://localhost:8000/api/${workOrBlog}`,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          Authorization: `Bearer ${localStorage.getItem("jwtTokenAdmin")}`,
         },
         data: data,
       };

@@ -2,7 +2,7 @@ import "../../css/admin.css";
 import { Link } from "react-router-dom";
 function AdminHeader() {
   const handleLogout = () => {
-    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("jwtTokenAdmin");
   };
 
   return (

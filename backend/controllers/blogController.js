@@ -28,18 +28,28 @@ const getBlog = asyncHandler(async (req, res) => {
 //@route POST api/blogs
 //@access Private
 const setBlog = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+
+  // Check if user exists
+  if (!user) {
+    res.status(401);
+    throw new Error("user not found");
+  }
+
+  if (user.role !== "admin") {
+    res.status(400);
+    throw new Error("you are not an admin");
+  }
+
   if (!req.body.title || !req.body.content) {
     res.status(400);
     throw new Error("please add all fields");
   }
-  if (req.user.role !== "admin") {
-    res.status(400);
-    throw new Error("you are not an admin");
-  }
+
   const blog = await Blog.create({
     title: req.body.title,
     content: req.body.content,
-    author: req.user.id,
+    author: user.id,
   });
   res.status(200).json({ blog });
 });
@@ -98,7 +108,7 @@ const deleteBlog = asyncHandler(async (req, res) => {
   }
 
   // Make sure the logged in user matches the user that made the request
-  if (blog.author._id.toString() !== user._id.toString()) {
+  if (blog.author._id.toString() !== user.id) {
     res.status(401);
     throw new Error("Not authorized to delete");
   }

@@ -17,7 +17,7 @@ function Blog(props) {
       url: `http://localhost:8000/api/${workOrBlog}`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("jwtTokenAdmin")}`,
       },
       data: data,
     };

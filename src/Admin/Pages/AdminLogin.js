@@ -5,6 +5,7 @@ import qs from "qs";
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isAdmin, setIsAdmin] = useState(true);
 
   const data = qs.stringify({
     email: email,
@@ -24,9 +25,15 @@ function AdminLogin() {
     e.preventDefault();
     try {
       const response = await axios(config);
-      const token = response.data.token;
-      localStorage.setItem("jwtToken", token);
-      window.location.replace("../admin");
+      if (response.data.role !== "admin") {
+        setIsAdmin(false);
+        throw new Error("only users with admin role can login to admin panel");
+      } else {
+        setIsAdmin(true);
+        const token = response.data.token;
+        localStorage.setItem("jwtTokenAdmin", token);
+        window.location.replace("../admin");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -48,6 +55,18 @@ function AdminLogin() {
   return (
     <div className="container-xl d-flex vh-100 justify-content-center align-items-center">
       <form className="col-md-6">
+        {isAdmin ? null : (
+          <div className="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>You are not authorized!</strong> Only users with "admin" role can log
+            into admin panel.
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+        )}
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -62,7 +81,7 @@ function AdminLogin() {
             aria-describedby="emailHelp"
           />
           <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
+            &nbsp;
           </div>
         </div>
         <div className="mb-3">
@@ -81,12 +100,12 @@ function AdminLogin() {
             required
           />
         </div>
-        <div className="mb-3 form-check">
+        {/* <div className="mb-3 form-check">
           <input type="checkbox" className="form-check-input" id="exampleCheck1" />
           <label className="form-check-label" htmlFor="exampleCheck1">
             Check me out
           </label>
-        </div>
+        </div> */}
         <button onClick={handleLogin} type="submit" className="btn btn-dark">
           Login
         </button>

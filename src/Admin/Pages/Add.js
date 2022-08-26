@@ -34,7 +34,7 @@ function Add() {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("jwtTokenAdmin")}`,
       },
       data: data,
     };
@@ -60,6 +60,7 @@ function Add() {
           {workOrBlog === "posts" ? "Post" : "Work"} Content
         </label>
         <Editor passContent={passContent} id="postContent" />
+        <ThumbnailUploader />
         <button onClick={handleSubmit} className="btn btn-success mt-5 d-block">
           Create {workOrBlog === "posts" ? "Post" : "Work"}
         </button>
