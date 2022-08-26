@@ -1,6 +1,10 @@
 import "../../css/admin.css";
 import { Link } from "react-router-dom";
 function AdminHeader() {
+  const handleLogout = () => {
+    localStorage.removeItem("jwtToken");
+  };
+
   return (
     <nav className="navbar navbar-expand-sm" id="AdminHeader">
       <div className="container-fluid">
@@ -79,7 +83,13 @@ function AdminHeader() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to={""} role="button" aria-expanded="false">
+              <Link
+                className="nav-link"
+                onClick={handleLogout}
+                to={"/"}
+                role="button"
+                aria-expanded="false"
+              >
                 Logout
               </Link>
             </li>

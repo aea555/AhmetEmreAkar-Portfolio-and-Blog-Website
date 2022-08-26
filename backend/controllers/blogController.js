@@ -57,8 +57,13 @@ const updateBlog = asyncHandler(async (req, res) => {
     throw new Error("user not found");
   }
 
+  if (req.user.role !== "admin") {
+    res.status(400);
+    throw new Error("you are not an admin");
+  }
+
   // Make sure the logged in user matches the user that made the request
-  if (blog.author.id.toString() !== user.id) {
+  if (blog.author._id.toString() !== user.id) {
     res.status(401);
     throw new Error("Not authorized to update");
   }
@@ -87,8 +92,13 @@ const deleteBlog = asyncHandler(async (req, res) => {
     throw new Error("user not found");
   }
 
+  if (req.user.role !== "admin") {
+    res.status(400);
+    throw new Error("you are not an admin");
+  }
+
   // Make sure the logged in user matches the user that made the request
-  if (blog.author.id.toString() !== user.id) {
+  if (blog.author._id.toString() !== user._id.toString()) {
     res.status(401);
     throw new Error("Not authorized to delete");
   }

@@ -7,7 +7,8 @@ var pathArray = window.location.pathname.split("/");
 var workOrBlog = pathArray[2];
 
 function Blog(props) {
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
     const data = qs.stringify({
       id: props._id,
     });
@@ -16,10 +17,12 @@ function Blog(props) {
       url: `http://localhost:8000/api/${workOrBlog}`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
       },
       data: data,
     };
     const response = await axios(config);
+    window.location.reload();
     console.log(response.data);
   };
   return (

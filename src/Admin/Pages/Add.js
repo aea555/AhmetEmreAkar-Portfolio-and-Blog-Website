@@ -34,6 +34,7 @@ function Add() {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
       },
       data: data,
     };

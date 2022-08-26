@@ -24,8 +24,9 @@ function AdminLogin() {
     e.preventDefault();
     try {
       const response = await axios(config);
-      const user = response.data;
-      console.log(user);
+      const token = response.data.token;
+      localStorage.setItem("jwtToken", token);
+      window.location.replace("../admin");
     } catch (err) {
       console.log(err);
     }
