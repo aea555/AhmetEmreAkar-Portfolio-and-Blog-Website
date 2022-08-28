@@ -11,9 +11,13 @@ var workOrBlog = pathArray[2];
 function Add() {
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");
+  let [thumbnail, setThumbnail] = useState("");
   let data;
   const passContent = (data) => {
     setContent(data);
+  };
+  const passThumbnail = (data) => {
+    setThumbnail(data);
   };
   const handleChange = (e) => {
     setTitle(e.target.value);
@@ -22,6 +26,7 @@ function Add() {
     data = qs.stringify({
       title: title,
       content: content,
+      thumbnail: thumbnail,
     });
   });
   const handleSubmit = async (e) => {
@@ -59,8 +64,11 @@ function Add() {
         <label htmlFor="postContent" className="form-label">
           {workOrBlog === "posts" ? "Post" : "Work"} Content
         </label>
-        <Editor passContent={passContent} id="postContent" />
-        <ThumbnailUploader />
+        <Editor passContent={passContent} type="content" id="postContent" />
+        <label htmlFor="postThumbnail" className="form-label">
+          Post Thumbnail
+        </label>
+        <Editor passThumbnail={passThumbnail} type="thumbnail" id="postThumbnail" />
         <button onClick={handleSubmit} className="btn btn-success mt-5 d-block">
           Create {workOrBlog === "posts" ? "Post" : "Work"}
         </button>

@@ -48,6 +48,7 @@ const setWork = asyncHandler(async (req, res) => {
   const work = await Work.create({
     title: req.body.title,
     content: req.body.content,
+    thumbnail: req.body.thumbnail,
     author: user.id,
   });
   res.status(200).json({ work });
@@ -84,6 +85,7 @@ const updateWork = asyncHandler(async (req, res) => {
   const updatedWork = await Work.findByIdAndUpdate(req.body.id, {
     title: req.body.title,
     content: req.body.content,
+    thumbnail: req.body.thumbnail,
   });
   res.status(200).json({ updatedWork });
 });

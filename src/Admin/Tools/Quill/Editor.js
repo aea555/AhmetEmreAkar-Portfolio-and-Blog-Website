@@ -1,37 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
-import Config from "./EditorConfig";
+import DefaultConfig from "./DefaultConfig";
+import ThumbnailConfig from "./ThumbnailConfig";
 import ImageCompress from "quill-image-compress";
 
 function QuillEditor(props) {
-  const { quill, quillRef, Quill } = useQuill(Config);
+  const type = props.type === "content" ? DefaultConfig : ThumbnailConfig;
+  const { quill, quillRef, Quill } = useQuill(type);
 
   if (Quill && !quill) {
     Quill.register("modules/imageCompress", ImageCompress);
   }
 
-  const [savedText, setSavedText] = useState("");
-
   useEffect(() => {
     if (quill) {
       quill.on("text-change", (delta, oldDelta, source) => {
-        setSavedText(quill.root.innerHTML);
+        if (props.type === "thumbnail") {
+          const firstPos = quill.root.innerHTML.indexOf("<img");
+          const lastPos = quill.root.innerHTML.indexOf("</");
+          const extractedImage = quill.root.innerHTML.substring(firstPos, lastPos);
+          props.passThumbnail(extractedImage);
+        } else {
+          props.passContent(quill.root.innerHTML);
+        }
       });
     }
   }, [quill]);
 
-  const handleSave = (e) => {
-    e.preventDefault();
-    props.passContent(savedText);
-  };
-
   return (
     <>
-      <div id="editor" ref={quillRef}></div>
-      <button className="btn btn-warning mt-3" onClick={handleSave}>
-        Save Text Content
-      </button>
+      <div id="editor" className={`${props.type} mb-5`} ref={quillRef}></div>
     </>
   );
 }

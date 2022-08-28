@@ -49,6 +49,7 @@ const setBlog = asyncHandler(async (req, res) => {
   const blog = await Blog.create({
     title: req.body.title,
     content: req.body.content,
+    thumbnail: req.body.thumbnail,
     author: user.id,
   });
   res.status(200).json({ blog });
@@ -85,6 +86,7 @@ const updateBlog = asyncHandler(async (req, res) => {
   const updatedBlog = await Blog.findByIdAndUpdate(req.body.id, {
     title: req.body.title,
     content: req.body.content,
+    thumbnail: req.body.thumbnail,
   });
   res.status(200).json({ updatedBlog });
 });

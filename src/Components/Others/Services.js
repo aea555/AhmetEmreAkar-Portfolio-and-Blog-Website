@@ -11,7 +11,7 @@ function Services() {
         <div className="col-sm-12 col-md-6">
           <i className="fa-solid fa-code fa-2x"></i>
           <h5>Backend Development</h5>
-          <p>I can write functional backend code w/databases, payment systems etc.</p>
+          <p>I can write functional backend code</p>
         </div>
       </div>
     </div>

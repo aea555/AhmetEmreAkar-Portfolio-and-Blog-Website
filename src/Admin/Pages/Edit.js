@@ -10,15 +10,18 @@ var workOrBlog = pathArray[2];
 function Edit(props) {
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");
+  let [thumbnail, setThumbnail] = useState("");
   let data;
 
   const setResponse = (res) => {
     if (workOrBlog === "posts") {
       setTitle(res.data.blogs.title);
       setContent(res.data.blogs.content);
+      setThumbnail(res.data.blogs.thumbnail);
     } else {
       setTitle(res.data.works.title);
       setContent(res.data.works.content);
+      setThumbnail(res.data.works.thumbnail);
     }
   };
 
@@ -33,9 +36,17 @@ function Edit(props) {
       };
       const response = await axios(config);
       setResponse(response);
-      workOrBlog === "posts"
-        ? (document.querySelector(".ql-editor").innerHTML = response.data.blogs.content)
-        : (document.querySelector(".ql-editor").innerHTML = response.data.works.content);
+      if (workOrBlog === "posts") {
+        document.querySelector(".content").firstChild.innerHTML =
+          response.data.blogs.content;
+        document.querySelector(".thumbnail").firstChild.innerHTML =
+          response.data.blogs.thumbnail;
+      } else {
+        document.querySelector(".content").firstChild.innerHTML =
+          response.data.works.content;
+        document.querySelector(".thumbnail").firstChild.innerHTML =
+          response.data.works.thumbnail;
+      }
     } catch (err) {
       console.log(`Request failed for reason: ${err}`);
     }
@@ -47,6 +58,7 @@ function Edit(props) {
       var data = qs.stringify({
         title: title,
         content: content,
+        thumbnail: thumbnail,
         id: id,
       });
       var config = {
@@ -68,6 +80,9 @@ function Edit(props) {
 
   const passContent = (data) => {
     setContent(data);
+  };
+  const passThumbnail = (data) => {
+    setThumbnail(data);
   };
 
   const handleChange = (e) => {
@@ -95,7 +110,11 @@ function Edit(props) {
         <label htmlFor="postContent" className="form-label">
           Post Content
         </label>
-        <Editor id="postContent" passContent={passContent} />
+        <Editor id="postContent" passContent={passContent} type="content" />
+        <label htmlFor="postThumbnail" className="form-label">
+          Post Thumbnail
+        </label>
+        <Editor id="postThumbnail" passThumbnail={passThumbnail} type="thumbnail" />
         <button onClick={updateData} className="btn btn-success mt-5 d-block">
           Edit Post
         </button>

@@ -11,6 +11,10 @@ const BlogSchema = new Schema(
       type: String,
       required: [true, "you must add blog content"],
     },
+    thumbnail: {
+      type: String,
+      required: [true, "you must add blog thumbnail"],
+    },
     author: {
       type: Schema.Types.ObjectId,
       ref: "User",
