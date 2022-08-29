@@ -33,6 +33,9 @@ const options = {
       suppressErrorLogging: false, // default
       insertIntoEditor: undefined, // default
     },
+    imageResize: {
+      modules: ["Resize", "DisplaySize", "Toolbar"],
+    },
   },
   theme: "snow",
 };

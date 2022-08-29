@@ -4,6 +4,7 @@ import "quill/dist/quill.snow.css";
 import DefaultConfig from "./DefaultConfig";
 import ThumbnailConfig from "./ThumbnailConfig";
 import ImageCompress from "quill-image-compress";
+import ImageResize from "quill-image-resize-module-react";
 
 function QuillEditor(props) {
   const type = props.type === "content" ? DefaultConfig : ThumbnailConfig;
@@ -11,6 +12,7 @@ function QuillEditor(props) {
 
   if (Quill && !quill) {
     Quill.register("modules/imageCompress", ImageCompress);
+    Quill.register("modules/imageResize", ImageResize);
   }
 
   useEffect(() => {

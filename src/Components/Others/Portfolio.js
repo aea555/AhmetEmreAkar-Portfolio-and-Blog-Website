@@ -1,6 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Portfolio() {
   const [datas, setDatas] = useState("");
@@ -21,12 +22,15 @@ function Portfolio() {
   const createDivs = () => {
     const works = datas.map((data) => {
       const startPos = data.thumbnail.indexOf("src");
-      const endPos = data.thumbnail.indexOf(">");
-      const imgSrc = data.thumbnail.substring(startPos + 4, endPos - 1).replace('"', "");
+      const endPos = data.thumbnail.indexOf("style");
+      const imgSrc = data.thumbnail.substring(startPos + 4, endPos - 2).replace('"', "");
       return (
-        <div className="work">
-          <h5>{data.title}</h5>
-          <img src={imgSrc} />
+        <div className="work gap-1 d-flex flex-column align-items-start">
+          <h3>{data.title}</h3>
+          <img className="img-thumbnail img-fluid" src={imgSrc} />
+          <Link className="text-dark" to={`works/${data._id}`}>
+            View Details
+          </Link>
         </div>
       );
     });
@@ -40,8 +44,8 @@ function Portfolio() {
   return (
     <div className="container-xl text-center portfolio">
       <h1 className="pt-3 mb-3">Work</h1>
-      <div className="row">
-        <div className="col">{datas.length ? createDivs() : null}</div>
+      <div className="row p-3">
+        <div className="col-md-4">{datas.length ? createDivs() : null}</div>
       </div>
     </div>
   );

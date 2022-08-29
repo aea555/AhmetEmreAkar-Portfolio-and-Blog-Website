@@ -5,13 +5,16 @@ const options = {
   modules: {
     toolbar: toolbarOptions,
     imageCompress: {
-      quality: 0.8, // default
-      maxWidth: 1024, // default
-      maxHeight: 1024, // default
+      quality: 0.7, // default
+      maxWidth: 768, // default
+      maxHeight: 768, // default
       imageType: "image/jpeg", // default
       debug: true, // default
       suppressErrorLogging: false, // default
       insertIntoEditor: undefined, // default
+    },
+    imageResize: {
+      modules: ["Resize", "DisplaySize", "Toolbar"],
     },
   },
   theme: "snow",

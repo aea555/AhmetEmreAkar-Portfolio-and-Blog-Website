@@ -10,6 +10,27 @@ const generateToken = (id) => {
   });
 };
 
+// @desc Get Public User Info
+// @route GET api/users/?id
+// @access Public
+const getPublicUserInfo = asyncHandler(async (req, res) => {
+  if (req.query.id !== undefined || null) {
+    console.log(req.query.id);
+    const user = await User.findById(req.query.id);
+    let name;
+    if (!user) {
+      res.status(400);
+      throw new Error("cant get user");
+    } else {
+      name = user.name;
+    }
+    res.status(200).json({ name });
+  } else {
+    res.status(200);
+    throw new Error("no id provided");
+  }
+});
+
 //@desc Register new user
 //@route POST api/users
 //@access Public
@@ -89,4 +110,4 @@ const getMe = asyncHandler(async (req, res) => {
   res.json({ message: req.user });
 });
 
-module.exports = { registerUser, loginUser, getMe };
+module.exports = { getPublicUserInfo, registerUser, loginUser, getMe };
