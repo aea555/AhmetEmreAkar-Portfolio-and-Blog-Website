@@ -5,14 +5,19 @@ A personal portfolio and also a blog website. I created this project to advance 
 # Frontend Stack
 
 -React
+
 -Bootstrap
+
 -Quill
 
 # Backend Stack
 
 -NodeJS Express
+
 -Mongoose & MongoDB
+
 -JSON Web Token
+
 -Bcrypt
 
 # Getting Started with Create React App
