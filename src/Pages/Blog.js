@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 function Blog() {
   const [datas, setDatas] = useState("");
-  const [randomPosts, setRandomPosts] = useState(null);
+  const [randomPosts, setRandomPosts] = useState([]);
   const [recentPosts, setRecentPosts] = useState([]);
 
   const getPosts = async () => {
@@ -76,10 +76,11 @@ function Blog() {
         <div className="col-md-6 mb-5">
           <h3>Posts</h3>
           <div className="">
-            {recentPosts.map((post) => {
+            {randomPosts.map((post) => {
               return (
                 <BlogSmall
                   key={uuid()}
+                  id={post._id}
                   thumbnail={createImgSrc(post)}
                   title={post.title}
                   content={post.content}
@@ -92,8 +93,18 @@ function Blog() {
         <div className="col-md-6 mb-5">
           <h3>New Posts</h3>
           <div className="">
-            <BlogLarge />
-            <BlogLarge />
+            {recentPosts.map((post) => {
+              return (
+                <BlogLarge
+                  key={uuid()}
+                  id={post._id}
+                  thumbnail={createImgSrc(post)}
+                  title={post.title}
+                  content={post.content}
+                  date={createDates(post)}
+                />
+              );
+            })}
           </div>
         </div>
       </div>

@@ -1,20 +1,29 @@
 import { Link } from "react-router-dom";
+import { Markup } from "interweave";
+let pathArray = window.location.pathname.split("/");
 
-function BlogLarge() {
+function BlogLarge(props) {
   return (
     <div className="blog-large border-top border-secondary pt-3 pb-3">
       <div className="row">
         <div className="col">
-          <img src="https://www.freecodecamp.org/news/content/images/2022/05/ilya-pavlov-OqtafYT5kTw-unsplash.jpg" className="blog-img-xl" />
+          <img src={props.thumbnail} className="blog-img-xl" />
         </div>
       </div>
       <div className="row">
         <div className="col">
-          <h5 className="mt-3">Blog Title Placeholder</h5>
-          <p>Lorem Ipsum is simply dummy text of the printing...</p>
-          <Link className="nav-link" to={""}>
-            View
-          </Link>
+          <h5 className="mt-3">{props.title}</h5>
+          <Markup content={props.content.slice(0, 60)} />
+          <p>
+            Posted at:
+            <br></br>
+            {props.date.day}
+            <br></br>
+            {props.date.hour}
+          </p>
+          <a className="nav-link" href={`blog/posts/${props.id}`}>
+            <a>View</a>
+          </a>
         </div>
       </div>
     </div>

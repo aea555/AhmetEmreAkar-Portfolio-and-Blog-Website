@@ -1,5 +1,30 @@
 import { Link } from "react-router-dom";
+import axios from "axios";
+import qs from "qs";
+import { useEffect, useState } from "react";
+
 function Header() {
+  const [isBlogPage, setIsBlogPage] = useState("");
+  const [url, setUrl] = useState("");
+
+  const getRandomBlog = async () => {
+    let data = qs.stringify({});
+    let config = {
+      method: "get",
+      url: "http://localhost:8000/api/posts/",
+      headers: {},
+      data: data,
+    };
+    const response = await axios(config);
+    const blogs = response.data.blogs;
+    const randomBlog = blogs[Math.floor(Math.random() * blogs.length)];
+    setUrl(`blog/posts/${randomBlog._id}`);
+  };
+
+  useEffect(() => {
+    getRandomBlog();
+  }, []);
+
   return (
     <div className="container-xl mt-2 mb-5">
       <nav className="navbar ms-auto navbar-expand-lg">
@@ -58,21 +83,16 @@ function Header() {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <a className="dropdown-item" href="#">
-                        Action
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="#">
-                        Another action
+                      <a className="dropdown-item" href={url}>
+                        Random Blog
                       </a>
                     </li>
                     <li>
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <Link className="dropdown-item" to={"/blog"}>
-                        Blog Home Page
+                      <Link className="dropdown-item" to={"/blog/posts"}>
+                        All Blogs
                       </Link>
                     </li>
                   </ul>
