@@ -1,13 +1,14 @@
 import Editor from "../Tools/Quill/Editor";
-import AdminHeader from "../partials/AdminHeader";
+import AdminHeader from "../Components/partials/AdminHeader";
 import { useEffect, useState } from "react";
 const axios = require("axios");
 const qs = require("qs");
-const id = window.location.pathname.substring(18);
-var pathArray = window.location.pathname.split("/");
-var workOrBlog = pathArray[2];
 
 function Edit(props) {
+  const id = window.location.pathname.substring(18);
+  var pathArray = window.location.pathname.split("/");
+  var workOrBlog = pathArray[2];
+
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");
   let [thumbnail, setThumbnail] = useState("");
@@ -71,7 +72,6 @@ function Edit(props) {
         data: data,
       };
       const response = await axios(config);
-      console.log(response);
       window.location.reload();
     } catch (err) {
       console.log(err);

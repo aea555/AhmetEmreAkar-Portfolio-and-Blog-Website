@@ -18,7 +18,6 @@ function SingleBlogPage() {
   const [recentPosts, setRecentPosts] = useState([]);
 
   const getBlog = async () => {
-    console.log(id);
     let data = qs.stringify({});
     let config = {
       method: "get",

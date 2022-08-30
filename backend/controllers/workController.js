@@ -7,7 +7,6 @@ const User = require("../models/UserModel");
 const getWork = asyncHandler(async (req, res) => {
   let works;
   if (req.query.id !== undefined) {
-    console.log(req.query.id);
     works = await Work.findById(req.query.id);
     if (!works) {
       res.status(400);

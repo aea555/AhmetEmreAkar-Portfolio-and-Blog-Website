@@ -1,14 +1,13 @@
 import Editor from "../Tools/Quill/Editor";
 import { useState, useEffect } from "react";
-import ThumbnailUploader from "../Tools/Others/ThumbnailUploader";
-import Modal from "../Tools/Others/Modal";
-import AdminHeader from "../partials/AdminHeader";
+import AdminHeader from "../Components/partials/AdminHeader";
 import axios from "axios";
 import qs from "qs";
-var pathArray = window.location.pathname.split("/");
-var workOrBlog = pathArray[2];
 
 function Add() {
+  var pathArray = window.location.pathname.split("/");
+  var workOrBlog = pathArray[2];
+
   let [title, setTitle] = useState("");
   let [content, setContent] = useState("");
   let [thumbnail, setThumbnail] = useState("");
@@ -31,8 +30,6 @@ function Add() {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(title);
-    console.log(content);
     const config = {
       method: "post",
       url: `http://localhost:8000/api/${workOrBlog}`,
@@ -44,7 +41,6 @@ function Add() {
       data: data,
     };
     const response = await axios(config);
-    console.log(response);
     window.location.reload();
   };
   return (

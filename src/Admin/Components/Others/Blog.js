@@ -23,7 +23,6 @@ function Blog(props) {
     };
     const response = await axios(config);
     window.location.reload();
-    console.log(response.data);
   };
   return (
     <div className="card">

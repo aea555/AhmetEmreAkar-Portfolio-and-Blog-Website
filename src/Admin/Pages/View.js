@@ -1,7 +1,7 @@
 import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
-import AdminHeader from "../partials/AdminHeader";
-import Blog from "../Tools/Others/Blog";
+import AdminHeader from "../Components/partials/AdminHeader";
+import Blog from "../Components/Others/Blog";
 const axios = require("axios");
 const qs = require("qs");
 

@@ -15,7 +15,6 @@ const generateToken = (id) => {
 // @access Public
 const getPublicUserInfo = asyncHandler(async (req, res) => {
   if (req.query.id !== undefined || null) {
-    console.log(req.query.id);
     const user = await User.findById(req.query.id);
     let name;
     if (!user) {
