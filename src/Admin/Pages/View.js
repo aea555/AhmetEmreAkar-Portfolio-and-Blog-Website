@@ -4,11 +4,11 @@ import AdminHeader from "../partials/AdminHeader";
 import Blog from "../Tools/Others/Blog";
 const axios = require("axios");
 const qs = require("qs");
-var pathArray = window.location.pathname.split("/");
-var workOrBlog = pathArray[2];
-console.log(workOrBlog);
 
 function View() {
+  var pathArray = window.location.pathname.split("/");
+  var workOrBlog = pathArray[2];
+
   let [datas, setData] = useState([]);
   const data = qs.stringify({});
   const config = {

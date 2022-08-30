@@ -10,6 +10,7 @@ import ViewBlogs from "./Admin/Pages/View";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./css/style.css";
 import Edit from "./Admin/Pages/Edit";
+import SearchResults from "./Pages/SearchResults";
 function App() {
   const getAdmin = () => {
     const token = localStorage.getItem("jwtTokenAdmin");
@@ -23,6 +24,7 @@ function App() {
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/blog/posts" element={<Blog />} />
         <Route path="/blog/posts/*" element={<SingleBlogPage />} />
+        <Route path="/blog/posts/search/*" element={<SearchResults />} />
       </Routes>
       <Routes>
         <Route path="/works/*" element={<WorkSingle />} />

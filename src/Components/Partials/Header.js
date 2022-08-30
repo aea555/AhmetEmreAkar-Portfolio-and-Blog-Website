@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
 import axios from "axios";
 import qs from "qs";
 import { useEffect, useState } from "react";
+import Searchbar from "../Others/Searchbar";
+let pathArray = window.location.pathname.split("/");
 
 function Header() {
-  const [isBlogPage, setIsBlogPage] = useState("");
+  const [isBlogPage, setIsBlogPage] = useState(false);
   const [url, setUrl] = useState("");
 
   const getRandomBlog = async () => {
@@ -21,15 +22,20 @@ function Header() {
     setUrl(`blog/posts/${randomBlog._id}`);
   };
 
+  const checkState = () => {
+    pathArray.includes("blog") ? setIsBlogPage(true) : setIsBlogPage(false);
+  };
+
   useEffect(() => {
     getRandomBlog();
+    checkState();
   }, []);
 
   return (
     <div className="container-xl mt-2 mb-5">
       <nav className="navbar ms-auto navbar-expand-lg">
         <div className="container-xl" id="navbar-cont">
-          <Link className="navbar-brand" to={"/"}>
+          <a className="navbar-brand" href={"/"}>
             <img
               src="./Images/aea.png"
               alt=""
@@ -37,7 +43,7 @@ function Header() {
               height="45"
               className="d-inline-block align-text-top"
             />
-          </Link>
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -68,13 +74,13 @@ function Header() {
             <div className="offcanvas-body">
               <ul className="navbar-nav mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to={"/"}>
+                  <a className="nav-link active" aria-current="page" href={"/"}>
                     Home
-                  </Link>
+                  </a>
                 </li>
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle me-2"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
@@ -91,24 +97,14 @@ function Header() {
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <Link className="dropdown-item" to={"/blog/posts"}>
+                      <a className="dropdown-item" href={"/blog/posts"}>
                         All Blogs
-                      </Link>
+                      </a>
                     </li>
                   </ul>
                 </li>
               </ul>
-              <form className="d-flex ms-2" role="search">
-                <input
-                  className="form-control"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <button className="btn ms-2" type="submit">
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </button>
-              </form>
+              {isBlogPage ? <Searchbar /> : null}
             </div>
           </div>
         </div>

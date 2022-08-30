@@ -1,20 +1,37 @@
 const asyncHandler = require("express-async-handler");
 const Blog = require("../models/BlogModel");
 const User = require("../models/UserModel");
+
 //@desc get blog
 //@route GET api/blogs
 //@access Public
 const getBlog = asyncHandler(async (req, res) => {
   let blogs;
+  // search by id
   if (req.query.id !== undefined) {
-    console.log(req.query.id);
     blogs = await Blog.findById(req.query.id);
     if (!blogs) {
       res.status(400);
       throw new Error("cant get blog");
     }
     res.status(200).json({ blogs });
-  } else {
+  }
+  // search by title
+  else if (req.query.title !== undefined) {
+    blogs = await Blog.find();
+    if (!blogs) {
+      res.status(400);
+      throw new Error("cant get blog");
+    }
+    const matches = blogs.map((blog) => {
+      if (blog.title.toLowerCase().includes(req.query.title.toLowerCase())) {
+        return blog;
+      }
+    });
+    res.status(200).json({ matches });
+  }
+  // get all blogs
+  else {
     blogs = await Blog.find();
     if (!blogs) {
       res.status(400);

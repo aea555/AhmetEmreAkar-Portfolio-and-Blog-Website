@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import axios from "axios";
 import qs from "qs";
 import { useEffect, useState } from "react";
@@ -25,7 +26,7 @@ function Portfolio() {
       const endPos = data.thumbnail.indexOf("style");
       const imgSrc = data.thumbnail.substring(startPos + 4, endPos - 2).replace('"', "");
       return (
-        <div className="work gap-1 d-flex flex-column align-items-start">
+        <div key={uuid()} className="work gap-1 d-flex flex-column align-items-start">
           <h3>{data.title}</h3>
           <img className="img-thumbnail img-fluid" src={imgSrc} />
           <Link className="text-dark" to={`works/${data._id}`}>
