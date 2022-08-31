@@ -14,7 +14,7 @@ function Blog(props) {
     });
     const config = {
       method: "delete",
-      url: `http://localhost:8000/api/${workOrBlog}`,
+      url: `${process.env.REACT_APP_API_URL}api/${workOrBlog}`,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${localStorage.getItem("jwtTokenAdmin")}`,

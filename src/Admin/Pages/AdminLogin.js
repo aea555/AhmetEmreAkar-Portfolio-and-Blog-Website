@@ -14,7 +14,7 @@ function AdminLogin() {
 
   const config = {
     method: "post",
-    url: "http://localhost:8000/api/users/admin/login",
+    url: `${process.env.REACT_APP_API_URL}api/users/admin/login`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },

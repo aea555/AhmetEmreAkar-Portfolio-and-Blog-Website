@@ -30,24 +30,13 @@ function Edit(props) {
     try {
       const config = {
         method: "get",
-        url: `http://localhost:8000/api/${workOrBlog}?id=${id}`,
+        url: `${process.env.REACT_APP_API_URL}api/${workOrBlog}?id=${id}`,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
       };
       const response = await axios(config);
       setResponse(response);
-      if (workOrBlog === "posts") {
-        document.querySelector(".content").firstChild.innerHTML =
-          response.data.blogs.content;
-        document.querySelector(".thumbnail").firstChild.innerHTML =
-          response.data.blogs.thumbnail;
-      } else {
-        document.querySelector(".content").firstChild.innerHTML =
-          response.data.works.content;
-        document.querySelector(".thumbnail").firstChild.innerHTML =
-          response.data.works.thumbnail;
-      }
     } catch (err) {
       console.log(`Request failed for reason: ${err}`);
     }
@@ -64,7 +53,7 @@ function Edit(props) {
       });
       var config = {
         method: "put",
-        url: `http://localhost:8000/api/${workOrBlog}`,
+        url: `${process.env.REACT_APP_API_URL}api/${workOrBlog}`,
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
           Authorization: `Bearer ${localStorage.getItem("jwtTokenAdmin")}`,
@@ -110,11 +99,21 @@ function Edit(props) {
         <label htmlFor="postContent" className="form-label">
           Post Content
         </label>
-        <Editor id="postContent" passContent={passContent} type="content" />
+        <Editor
+          id="postContent"
+          passContent={passContent}
+          defaultVal={content}
+          type="content"
+        />
         <label htmlFor="postThumbnail" className="form-label">
           Post Thumbnail
         </label>
-        <Editor id="postThumbnail" passThumbnail={passThumbnail} type="thumbnail" />
+        <Editor
+          id="postThumbnail"
+          passThumbnail={passThumbnail}
+          defaultVal={thumbnail}
+          type="thumbnail"
+        />
         <button onClick={updateData} className="btn btn-success mt-5 d-block">
           Edit Post
         </button>

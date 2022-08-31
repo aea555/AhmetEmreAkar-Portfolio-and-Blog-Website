@@ -13,7 +13,7 @@ function Searchbar() {
     let data = qs.stringify({});
     let config = {
       method: "get",
-      url: `http://localhost:8000/api/posts/?title=${value}`,
+      url: `${process.env.REACT_APP_API_URL}api/posts/?title=${value}`,
       headers: {},
       data: data,
     };

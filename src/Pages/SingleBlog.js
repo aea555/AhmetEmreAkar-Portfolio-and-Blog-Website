@@ -21,7 +21,7 @@ function SingleBlogPage() {
     let data = qs.stringify({});
     let config = {
       method: "get",
-      url: `http://localhost:8000/api/posts/?id=${id}`,
+      url: `${process.env.REACT_APP_API_URL}api/posts/?id=${id}`,
       headers: {},
       data: data,
     };
@@ -41,7 +41,7 @@ function SingleBlogPage() {
     let data = qs.stringify({});
     let config = {
       method: "get",
-      url: "http://localhost:8000/api/posts",
+      url: `${process.env.REACT_APP_API_URL}api/posts`,
       headers: {},
       data: data,
     };

@@ -13,7 +13,7 @@ function View() {
   const data = qs.stringify({});
   const config = {
     method: "get",
-    url: `http://localhost:8000/api/${workOrBlog}/`,
+    url: `${process.env.REACT_APP_API_URL}api/${workOrBlog}/`,
     headers: {},
     data: data,
   };

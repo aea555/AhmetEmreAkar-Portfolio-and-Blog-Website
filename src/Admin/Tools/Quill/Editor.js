@@ -1,38 +1,79 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useQuill } from "react-quilljs";
-import "quill/dist/quill.snow.css";
+// React
+import React, { useState, useRef, useEffect } from "react";
+
+// Quill
+import ReactQuill, { Quill } from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
+// Quill Configs
 import DefaultConfig from "./DefaultConfig";
 import ThumbnailConfig from "./ThumbnailConfig";
+
+// Quill Modules
 import ImageCompress from "quill-image-compress";
 import ImageResize from "quill-image-resize-module-react";
 
 function QuillEditor(props) {
-  const type = props.type === "content" ? DefaultConfig : ThumbnailConfig;
-  const { quill, quillRef, Quill } = useQuill(type);
+  // Create editor ref
+  let quillRef = useRef();
+  let reactQuillRef = useRef();
 
-  if (Quill && !quill) {
-    Quill.register("modules/imageCompress", ImageCompress);
-    Quill.register("modules/imageResize", ImageResize);
-  }
+  // Editor instances
+  let editor;
+  let unprivilegedEditor;
 
+  // Attach refs
+  const attachQuillRefs = () => {
+    if (typeof reactQuillRef.getEditor !== "function") return;
+    quillRef = reactQuillRef.getEditor();
+  };
+
+  // Editor state
+  const [value, setValue] = useState("");
+
+  // Create safe unprivileged editor
   useEffect(() => {
-    if (quill) {
-      quill.on("text-change", (delta, oldDelta, source) => {
-        if (props.type === "thumbnail") {
-          const firstPos = quill.root.innerHTML.indexOf("<img");
-          const lastPos = quill.root.innerHTML.indexOf("</");
-          const extractedImage = quill.root.innerHTML.substring(firstPos, lastPos);
-          props.passThumbnail(extractedImage);
-        } else {
-          props.passContent(quill.root.innerHTML);
-        }
-      });
+    attachQuillRefs();
+    editor = reactQuillRef.getEditor();
+    unprivilegedEditor = reactQuillRef.makeUnprivilegedEditor(editor);
+    if (props.defaultVal) {
+      setValue(props.defaultVal);
     }
-  }, [quill]);
+  });
+
+  // Configure toolbar
+  const modules =
+    props.type === "content" ? DefaultConfig.modules : ThumbnailConfig.modules;
+
+  // Register external modules
+  Quill.register("modules/imageCompress", ImageCompress);
+  Quill.register("modules/imageResize", ImageResize);
+
+  const handleChange = () => {
+    let content = unprivilegedEditor.getHTML();
+    setValue(content);
+    if (props.type === "thumbnail") {
+      const firstPos = content.indexOf("<img");
+      const lastPos = content.indexOf("</");
+      const extractedImage = content.substring(firstPos, lastPos);
+      props.passThumbnail(extractedImage);
+    } else {
+      props.passContent(content);
+    }
+  };
 
   return (
     <>
-      <div id="editor" className={`${props.type} mb-5`} ref={quillRef}></div>
+      <ReactQuill
+        theme="snow"
+        value={value}
+        onChange={handleChange}
+        modules={modules}
+        ref={(el) => {
+          reactQuillRef = el;
+        }}
+        className={`${props.type} mb-5`}
+      />
     </>
   );
 }

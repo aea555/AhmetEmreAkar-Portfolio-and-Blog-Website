@@ -16,7 +16,7 @@ function Blog() {
     let data = qs.stringify({});
     let config = {
       method: "get",
-      url: "http://localhost:8000/api/posts",
+      url: `${process.env.REACT_APP_API_URL}api/posts`,
       headers: {},
       data: data,
     };

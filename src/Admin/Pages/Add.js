@@ -32,7 +32,7 @@ function Add() {
     e.preventDefault();
     const config = {
       method: "post",
-      url: `http://localhost:8000/api/${workOrBlog}`,
+      url: `${process.env.REACT_APP_API_URL}api/${workOrBlog}`,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/x-www-form-urlencoded",

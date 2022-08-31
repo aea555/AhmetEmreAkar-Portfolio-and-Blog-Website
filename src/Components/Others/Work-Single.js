@@ -14,7 +14,7 @@ function WorkSingle() {
   var data = qs.stringify({});
   var config = {
     method: "get",
-    url: `http://localhost:8000/api/works?id=${id}`,
+    url: `${process.env.REACT_APP_API_URL}api/works?id=${id}`,
     headers: {},
     data: data,
   };
