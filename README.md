@@ -1,3 +1,25 @@
+# AhmetEmreAkar-Portfolio-and-Blog-Website
+
+A personal portfolio and also a blog website. I created this project to advance my skills at writing backend code and getting more comfortable with React.
+
+# Frontend Stack
+
+-React
+
+-Bootstrap
+
+-Quill
+
+# Backend Stack
+
+-NodeJS Express
+
+-Mongoose & MongoDB
+
+-JSON Web Token
+
+-Bcrypt
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
